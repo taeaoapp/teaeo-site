@@ -30,32 +30,42 @@ if(isset($_POST['surename']) && isset($_POST['name']) && isset($_POST['email']) 
 		//Create instance of PHPMailer
 		$mail=new PHPMailer(true);
 
+		//Debug server
+		$mail->SMTPDebug = SMTP::DEBUG_OFF; 
+
 		//Set mailer to use smtp
 		$mail->isSMTP();
 
+		//Prevent long stalls if SMTP host is unreachable
+		$mail->Timeout = 15;
+
 		//Define smtp host
-		$mail->Host="smtp.gmail.com";
+		//$mail->Host="0.0.0.0";
+		$mail->Host=getenv('SMTP_HOST') ?: 'smtp.gmail.com';
 
 		//Port to connect smtp
+		//$mail->Port=1025;
 		$mail->Port=587;
 
 		//Set smtp encryption type (ssl/tls)
 		$mail->SMTPSecure="tls";
 		
 		//Enable smtp authentication
+		//$mail->SMTPAuth=false;
 		$mail->SMTPAuth=true;
 
 		//Set gmail username
-		$mail->Username="rajan.pixner@gmail.com"; // Replace Company's Email Address (preferably currently used Domain Name)
+		//$mail->Username="user@host"; // Replace Company's Email Address (preferably currently used Domain Name)
+		$mail->Username="zac.oge@gmail.com";
 
 		//Set gmail password
-		$mail->Password="xhwgvvjjdozzxbag";  //Replace Your Gmail Password Here
+		$mail->Password="eyvptsxocpbmfzdk";  //Replace Your Gmail Password Here
 
 		//Set sender email
-		$mail->SetFrom("rajan.pixner@gmail.com"); // Replace Your Email Address
+		$mail->SetFrom("zac.oge@gmail.com"); // Replace Your Email Address
 
 		//Add recipient
-		$mail->addAddress("rajan.pixner@gmail.com"); // Replace Your Recipient Email Address
+		$mail->addAddress("zac.oge@gmail.com"); // Replace Your Recipient Email Address
 		
 		//Enable HTML
 		$mail->IsHTML(true);
@@ -81,7 +91,7 @@ if(isset($_POST['surename']) && isset($_POST['name']) && isset($_POST['email']) 
 		}else{
 			$fail = "
 				<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-					<span>Please fill out all required fields.</span>
+					<span>Message could not be sent right now.</span>
 				</div>
 			";
 		}

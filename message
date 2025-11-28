@@ -1,0 +1,15 @@
+From: Test User <test@example.com>
+To: Mailpit Inbox <user@host>
+Subject: Mailpit SMTP test
+Date: Tue, 18 Feb 2025 12:00:00 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+
+Hi there,
+
+This is a simple plaintext message created to verify that the Mailpit
+instance is correctly receiving SMTP traffic from the application.
+
+Cheers,
+Test User
