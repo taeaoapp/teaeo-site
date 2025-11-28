@@ -1,14 +1,12 @@
 <?php
 // Contact Message
-if(isset($_POST['surename']) && isset($_POST['name']) && isset($_POST['email']) && isset($_POST['subject']) && isset($_POST['message'])  && isset($_POST['check'])){
+if(isset($_POST['surename']) && isset($_POST['name']) && isset($_POST['email']) && isset($_POST['subject']) && isset($_POST['message'])){
 	$surename=$_POST['surename'];
 	$name= $_POST['name'];
 	$email= $_POST['email'];
 	$subject= $_POST['subject'];
 	$message= $_POST['message'];
-	$check= $_POST['check'];
-
-	
+	$check= $_POST['check'] ?? '';
 
 	if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 		echo "
@@ -16,56 +14,48 @@ if(isset($_POST['surename']) && isset($_POST['name']) && isset($_POST['email']) 
 				<span>Email is Not Valid! Please try again. </span>
 			</div>
 		";
-	}elseif($check == ''){
-		echo "
-			<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-				<span>Checkbox is required.</span>
-			</div>
-		";
 	}else{
 		//Email body
-		$html="<table><tr><td>Surename</td><td>: $surename</td></tr><tr><td>Name</td><td>: $name</td></tr> <tr><td>Email</td><td>: $email</td></tr><tr><td>Subject</td><td>: $subject</td></tr><tr><td>Message</td><td>: $message</td></tr><tr><td>Check</td><td>: $check</td></tr></table>";	
+		$html="<table>
+			<tr><td>Surename</td><td>: $surename</td></tr>
+			<tr><td>Name</td><td>: $name</td></tr> 
+			<tr><td>Email</td><td>: $email</td></tr><tr><td>Subject</td>
+			<td>: $subject</td></tr><tr><td>Message</td>
+			<td>: $message</td></tr><tr><td>Check</td>
+			<td>: $check</td></tr></table>";
+				
 		include('smtp/PHPMailerAutoload.php');
 		
 		//Create instance of PHPMailer
 		$mail=new PHPMailer(true);
 
-		//Debug server
-		$mail->SMTPDebug = SMTP::DEBUG_OFF; 
+		//Debug
+		$mail->SMTPDebug = 0; 
 
 		//Set mailer to use smtp
 		$mail->isSMTP();
 
-		//Prevent long stalls if SMTP host is unreachable
 		$mail->Timeout = 15;
 
-		//Define smtp host
-		//$mail->Host="0.0.0.0";
 		$mail->Host=getenv('SMTP_HOST') ?: 'smtp.gmail.com';
-
-		//Port to connect smtp
-		//$mail->Port=1025;
-		$mail->Port=587;
+		$mail->Port=getenv('SMTP_PORT') ?: 587;
+		
 
 		//Set smtp encryption type (ssl/tls)
 		$mail->SMTPSecure="tls";
-		
-		//Enable smtp authentication
-		//$mail->SMTPAuth=false;
 		$mail->SMTPAuth=true;
 
-		//Set gmail username
-		//$mail->Username="user@host"; // Replace Company's Email Address (preferably currently used Domain Name)
-		$mail->Username="zac.oge@gmail.com";
-
-		//Set gmail password
-		$mail->Password="eyvptsxocpbmfzdk";  //Replace Your Gmail Password Here
+		//Set email and App password env vars
+		$mail->Username=getenv('SMTP_USER');
+		$mail->Password=getenv('SMTP_PASS');  
+		echo(getenv('SMTP_USER'));
+		echo(getenv('SMTP_PASS'));
 
 		//Set sender email
-		$mail->SetFrom("zac.oge@gmail.com"); // Replace Your Email Address
+		$mail->SetFrom("contactpage@taeao.co.nz"); // Replace Your Email Address
 
 		//Add recipient
-		$mail->addAddress("zac.oge@gmail.com"); // Replace Your Recipient Email Address
+		$mail->addAddress("contact@taeao.co.nz"); // Replace Your Recipient Email Address
 		
 		//Enable HTML
 		$mail->IsHTML(true);
@@ -102,6 +92,5 @@ if(isset($_POST['surename']) && isset($_POST['name']) && isset($_POST['email']) 
 	} 
 	if (isset($fail)) {
 		echo $fail;
-	} 
-
+	}
 ?>

@@ -10,11 +10,12 @@
             var surename = $('#surename').val();
             var message = $('#message').val();
             var phone = $('#phone').val();
+            var check = $('#check').is(':checked') ? 'Yes' : 'No';
 
             if (name && email && message && surename) {
                 $.ajax({
                     type: "POST",
-                    url: 'contact.php',
+                    url: 'mail.php',
                     data: {
                         'name': name,
                         'email': email,
@@ -22,6 +23,7 @@
                         'surename': surename,
                         'message': message,
                         'phone': phone,
+                        'recieveCommunications': check,
                     },
                     success: function (data) {
                         $('#contact_form_submit').children('.email-success').remove();
@@ -32,6 +34,7 @@
                         $('#surename').val('');
                         $('#subject').val('');
                         $('#phone').val('');
+                        //$('#check').prop('checked', false);
                         // $('#map').height('576px');
                         $('.email-success').fadeOut(3000);
                     },
