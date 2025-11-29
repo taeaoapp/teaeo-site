@@ -14289,3 +14289,413 @@ div[class*=col]:nth-of-type(3n + 3) .pricing-item-20 {
     padding: 130px 0 75px;
   }
 }
+/* =========================================
+   Taeao Brand Theme Overrides
+   Palette:
+   - Primary:        #AACBE4
+   - Primary Dark:   #6B9DC4
+   - Primary Light:  #D4E7F4
+   - Accent Coral:   #F4A261
+   - Deep Navy:      #2D3E50
+   - Neutral Light:  #F8F9FA
+   - Success Green:  #82C4A0
+   ========================================= */
+
+:root {
+  --taeao-blue: #aacbe4;
+  --taeao-blue-dark: #6b9dc4;
+  --taeao-blue-light: #d4e7f4;
+  --taeao-coral: #f4a261;
+  --taeao-navy: #2d3e50;
+  --taeao-bg: #f8f9fa;
+  --taeao-success: #82c4a0;
+}
+
+/* -------------------------
+   Global / Body / Typography
+   ------------------------- */
+
+body {
+  background-color: var(--taeao-bg);
+  color: var(--taeao-navy);
+}
+
+body,
+p,
+.section-header p {
+  color: var(--taeao-navy);
+}
+
+a {
+  color: var(--taeao-blue-dark);
+}
+
+a:hover {
+  color: var(--taeao-coral);
+}
+
+/* Section headers */
+.section-header .cate {
+  color: var(--taeao-blue-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.section-header .title,
+.section-header.left-style .title {
+  color: var(--taeao-navy);
+}
+
+/* Generic light section background */
+.section-bg {
+  background-color: var(--taeao-blue-light);
+}
+
+.body--bg {
+  background-color: var(--taeao-bg);
+}
+
+/* -------------------------
+   Header & Navigation
+   ------------------------- */
+
+.header-section {
+  background: linear-gradient(90deg, var(--taeao-blue) 0%, var(--taeao-blue-dark) 100%);
+  border-bottom: none;
+}
+
+.header-section .menu li a {
+  color: #ffffff;
+}
+
+.header-section .menu li a:hover,
+.header-section .menu li.active > a {
+  color: #ffffff;
+  opacity: 0.9;
+}
+
+.header-right .select-bar {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* -------------------------
+   Buttons & CTAs
+   ------------------------- */
+
+.button-4,
+.header-button {
+  background: var(--taeao-coral);
+  border-color: var(--taeao-coral);
+  color: #ffffff !important;
+}
+
+.button-4:hover,
+.header-button:hover {
+  background: #e27d3d;
+  border-color: #e27d3d;
+  color: #ffffff !important;
+}
+
+/* Small tags / pills etc. */
+.badge-primary,
+.badge.badge-primary {
+  background-color: var(--taeao-blue-dark);
+}
+
+/* -------------------------
+   Hero / Banner (banner-20)
+   ------------------------- */
+
+.banner-20 {
+  /* wipe out template bg image influence & recolor */
+  background: radial-gradient(
+    circle at top left,
+    var(--taeao-blue-light) 0%,
+    var(--taeao-blue) 40%,
+    var(--taeao-blue-dark) 100%
+  ) !important;
+  color: #ffffff;
+}
+
+.banner-20 .title {
+  color: #ffffff;
+}
+
+.banner-20 p {
+  color: #f7f9ff;
+}
+
+/* Video button in hero */
+.banner-20 .video-button {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.banner-20 .video-button i {
+  color: #ffffff;
+}
+
+/* -------------------------
+   Logo slider ("Trusted by" section)
+   ------------------------- */
+
+.logo-slider-section {
+  background-color: #ffffff;
+}
+
+.logo-slider-section .title {
+  color: var(--taeao-navy);
+}
+
+.logo-slider .item img {
+  filter: grayscale(100%);
+  opacity: 0.7;
+}
+
+/* -------------------------
+   Features (feature-section-20)
+   ------------------------- */
+
+.feature-section {
+  background-color: var(--taeao-bg);
+}
+
+/* Gradient container behind phone image + text */
+.feature-wrapper-bg-20 {
+  background: linear-gradient(
+    135deg,
+    var(--taeao-blue-dark) 0%,
+    var(--taeao-blue) 50%,
+    var(--taeao-blue-light) 100%
+  ) !important;
+}
+
+/* White text inside feature content */
+.feature-content-20.cl-white .title,
+.feature-content-20.cl-white p {
+  color: #ffffff;
+}
+
+/* Feature slider navigation */
+.feat-nav a {
+  border-color: rgba(255, 255, 255, 0.6);
+  color: #ffffff;
+}
+
+.feat-nav a.active,
+.feat-nav a:hover {
+  background-color: #ffffff;
+  color: var(--taeao-blue-dark);
+}
+
+/* -------------------------
+   How it works (how-section-20)
+   ------------------------- */
+
+.how-section-20 {
+  background-color: #ffffff;
+}
+
+.how-item-20 {
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+}
+
+.how-item-20 .title {
+  color: var(--taeao-navy);
+}
+
+/* -------------------------
+   App Screenshot / Impact section
+   ------------------------- */
+
+.apps-screenshot-section-20 {
+  background-color: var(--taeao-bg);
+}
+
+.app-screenshot-20 img {
+  opacity: 0.9;
+}
+
+/* Slider arrows (re-using feat-nav class in that section) */
+.apps-screenshot-section-20 .feat-nav a {
+  border-color: var(--taeao-blue-dark);
+  color: var(--taeao-blue-dark);
+}
+
+.apps-screenshot-section-20 .feat-nav a.active,
+.apps-screenshot-section-20 .feat-nav a:hover {
+  background-color: var(--taeao-blue-dark);
+  color: #ffffff;
+}
+
+/* -------------------------
+   Cards / "Pricing" blocks (now used as personas)
+   ------------------------- */
+
+.pricing-section-20 {
+  background-color: #ffffff;
+}
+
+.pricing-item-20 {
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(172, 187, 209, 0.4);
+}
+
+.pricing-item-20 .pricing-header .name {
+  color: var(--taeao-blue-dark);
+  letter-spacing: 0.08em;
+}
+
+.pricing-item-20 .price {
+  color: var(--taeao-navy);
+}
+
+.pricing-item-20 .info {
+  color: var(--taeao-blue-dark);
+}
+
+.pricing-item-20 ul li::before {
+  background-color: var(--taeao-success);
+}
+
+/* Monthly / Yearly tabs */
+.pricing-menu li {
+  border-color: var(--taeao-blue-light);
+  color: var(--taeao-navy);
+}
+
+.pricing-menu li.active {
+  background-color: var(--taeao-blue-dark);
+  color: #ffffff;
+  border-color: var(--taeao-blue-dark);
+}
+
+/* -------------------------
+   Testimonials
+   ------------------------- */
+
+.testimonial-section {
+  background-color: var(--taeao-blue-light);
+}
+
+.review-item-20 {
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+}
+
+.review-item-20 strong {
+  color: var(--taeao-blue-dark);
+}
+
+/* Stars */
+.review-item-20 .ratings span i {
+  color: var(--taeao-coral);
+}
+
+/* -------------------------
+   Download / Waitlist ("apps-download-section")
+   ------------------------- */
+
+.apps-download-section {
+  background: linear-gradient(
+    135deg,
+    var(--taeao-blue-dark) 0%,
+    var(--taeao-blue) 50%,
+    var(--taeao-blue-light) 100%
+  );
+}
+
+/* Headline + intro text */
+.apps-download-section .section-header .title,
+.apps-download-section .section-header p,
+.apps-download-section .section-header .cate {
+  color: #ffffff;
+}
+
+/* Download buttons */
+.apps-download-buttons-20 .title {
+  color: #ffffff;
+}
+
+.download-options li a {
+  border-color: rgba(255, 255, 255, 0.5);
+  color: #ffffff;
+}
+
+.download-options li a.active,
+.download-options li a:hover {
+  background-color: #ffffff;
+  color: var(--taeao-blue-dark);
+}
+
+.download-options li span {
+  color: #ffffff;
+}
+
+/* Waitlist form inputs (if you added .taeao-input) */
+.taeao-waitlist-form {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.taeao-waitlist-grid {
+  display: grid;
+  grid-template-columns: 2fr 2fr 1.2fr;
+  gap: 12px;
+}
+
+.taeao-input {
+  border-radius: 999px;
+  border: none;
+  padding: 12px 18px;
+  font-size: 14px;
+}
+
+.taeao-input:focus {
+  outline: 2px solid var(--taeao-blue-dark);
+}
+
+/* Mobile */
+@media (max-width: 767.98px) {
+  .taeao-waitlist-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* -------------------------
+   Footer
+   ------------------------- */
+
+.footer-section {
+  background: linear-gradient(180deg, var(--taeao-blue-dark) 0%, #1b2532 100%) !important;
+}
+
+.footer-section p,
+.footer-section a,
+.footer-section .footer-link li a {
+  color: #e3edf7;
+}
+
+.footer-link li a:hover {
+  color: #ffffff;
+}
+
+/* Social icons */
+.social-icons li a {
+  border-color: rgba(255, 255, 255, 0.5);
+  color: #ffffff;
+}
+
+.social-icons li a:hover,
+.social-icons li a.active {
+  background-color: #ffffff;
+  color: var(--taeao-blue-dark);
+}
+
