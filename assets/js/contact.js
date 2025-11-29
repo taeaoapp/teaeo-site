@@ -7,12 +7,11 @@
             var name = $('#name').val();
             var email = $('#email').val();
             var subject = $('#subject').val();
-            var surename = $('#surename').val();
             var message = $('#message').val();
             var phone = $('#phone').val();
             var check = $('#check').is(':checked') ? 'Yes' : 'No';
 
-            if (name && email && message && surename) {
+            if (name && email && message) {
                 $.ajax({
                     type: "POST",
                     url: 'mail.php',
@@ -20,7 +19,6 @@
                         'name': name,
                         'email': email,
                         'subject': subject,
-                        'surename': surename,
                         'message': message,
                         'phone': phone,
                         'recieveCommunications': check,
@@ -31,7 +29,6 @@
                         $('#name').val('');
                         $('#email').val('');
                         $('#message').val('');
-                        $('#surename').val('');
                         $('#subject').val('');
                         $('#phone').val('');
                         //$('#check').prop('checked', false);

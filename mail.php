@@ -1,7 +1,6 @@
 <?php
 // Contact Message
-if(isset($_POST['surename']) && isset($_POST['name']) && isset($_POST['email']) && isset($_POST['subject']) && isset($_POST['message'])){
-	$surename=$_POST['surename'];
+if(isset($_POST['name']) && isset($_POST['email']) && isset($_POST['subject']) && isset($_POST['message'])){
 	$name= $_POST['name'];
 	$email= $_POST['email'];
 	$subject= $_POST['subject'];
@@ -17,7 +16,6 @@ if(isset($_POST['surename']) && isset($_POST['name']) && isset($_POST['email']) 
 	}else{
 		//Email body
 		$html="<table>
-			<tr><td>Surename</td><td>: $surename</td></tr>
 			<tr><td>Name</td><td>: $name</td></tr> 
 			<tr><td>Email</td><td>: $email</td></tr><tr><td>Subject</td>
 			<td>: $subject</td></tr><tr><td>Message</td>
@@ -48,8 +46,6 @@ if(isset($_POST['surename']) && isset($_POST['name']) && isset($_POST['email']) 
 		//Set email and App password env vars
 		$mail->Username=getenv('SMTP_USER');
 		$mail->Password=getenv('SMTP_PASS');  
-		echo(getenv('SMTP_USER'));
-		echo(getenv('SMTP_PASS'));
 
 		//Set sender email
 		$mail->SetFrom("contactpage@taeao.co.nz"); // Replace Your Email Address
