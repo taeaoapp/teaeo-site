@@ -1,52 +1,62 @@
-(function ($) {
-    "use strict";
+function validateEmail(email){
+    const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return pattern.test(email);
+}
 
-    jQuery(document).ready(function ($) {
-        $(document).on('submit', '#contact_form_submit', function (e) {
-            e.preventDefault();
-            var name = $('#name').val();
-            var email = $('#email').val();
-            var subject = $('#subject').val();
-            var surename = $('#surename').val();
-            var message = $('#message').val();
-            var phone = $('#phone').val();
+function validateForm() {
+    var name = $('#name').val();
+    var email = $('#email').val();
+    var subject = $('#subject').val();
+    var message = $('#message').val();
+    var phone = $('#phone').val();
+    if (!name && !email && !subject && !message && !phone){
+        $('#contact_form_submit')
+        .prepend("<div class='alert alert-danger alert-dismissible fade show' role='alert'>"+
+		"<span>Please fill out all required fields.</span>"+
+        "</div>")
+        return false;
+    }
+    if (!validateEmail(email)) {
+        $('#contact_form_submit')
+        .prepend("<div class='alert alert-danger alert-dismissible fade show' role='alert'>"+
+			"<span>Email is Not Valid! Please try again. </span>"+
+			"</div>")
+        return false;
+    }
+    return true    
+}
+const handleSubmit = event => {
+    event.preventDefault();
+    const contactForm = event.target;
+    var formData = new FormData(contactForm);
 
-            if (name && email && message && surename) {
-                $.ajax({
-                    type: "POST",
-                    url: 'contact.php',
-                    data: {
-                        'name': name,
-                        'email': email,
-                        'subject': subject,
-                        'surename': surename,
-                        'message': message,
-                        'phone': phone,
-                    },
-                    success: function (data) {
-                        $('#contact_form_submit').children('.email-success').remove();
-                        $('#contact_form_submit').prepend('<span class="alert alert-success email-success">' + data + '</span>');
-                        $('#name').val('');
-                        $('#email').val('');
-                        $('#message').val('');
-                        $('#surename').val('');
-                        $('#subject').val('');
-                        $('#phone').val('');
-                        // $('#map').height('576px');
-                        $('.email-success').fadeOut(3000);
-                    },
-                    error: function (res) {
 
-                    }
-                });
-            } else {
-                $('#contact_form_submit').children('.email-success').remove();
-                $('#contact_form_submit').prepend('<span class="alert alert-danger email-success">All Fields are Required.</span>');
-                // $('#map').height('576px');
-                $('.email-success').fadeOut(3000);
-            }
-
-        });
+    fetch("/", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: new URLSearchParams(formData).toString()
+    })
+    .then(() => {
+        if (validateForm()) {
+            $('#contact_form_submit').prepend("<div class='conTop_25 alert alert-success alert-dismissible fade show' role='alert'>"
+            +"<span>Thank you for contacting us and will be in touch with you very soon.</span></div>");
+            $('#name').val('');
+            $('#email').val('');
+            $('#message').val('');
+            $('#surename').val('');
+            $('#subject').val('');
+            $('#phone').val('');
+        }
+    })
+    .catch(error =>  {$('#contact_form_submit').prepend(
+        "<div class='alert alert-danger alert-dismissible fade show' role='alert'>"+
+        "<span>"+error+"</span>"+
+        "</div>");
+    })
+    .finally(() =>{
+        $('.alert-danger').fadeOut(3000);
     })
 
-}(jQuery));
+};
+
+document.querySelector("form").addEventListener("submit", handleSubmit);
